@@ -2,6 +2,7 @@ package ac.daffodil.controller;
 
 import ac.daffodil.dao.RoleDao;
 import ac.daffodil.dao.UserDao;
+import ac.daffodil.model.Role;
 import ac.daffodil.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,9 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("users", userDao.getAll());
         modelAndView.addObject("roles", roleDao.getAll());
+        for (Role role : roleDao.getAll()) {
+            System.out.println(role.getRoleName());
+        }
         modelAndView.addObject("message",  request.getParameter("message"));
         User newUser= new User();
         modelAndView.addObject("newUser", newUser);

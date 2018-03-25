@@ -44,7 +44,7 @@ public class User {
     private int active;
 
     @Column(name = "roleId")
-    private int roleId;
+    private long roleId;
 
 
     public User() {
@@ -106,11 +106,11 @@ public class User {
         this.active = active;
     }
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 
