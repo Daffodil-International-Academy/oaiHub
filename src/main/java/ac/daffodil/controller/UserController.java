@@ -33,12 +33,13 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("users", userDao.getAll());
         modelAndView.addObject("roles", roleDao.getAll());
-        for (Role role : roleDao.getAll()) {
-            System.out.println(role.getRoleName());
-        }
+//        for (Role role : roleDao.getAll()) {
+//            System.out.println(role.getRoleName());
+//        }
         modelAndView.addObject("message",  request.getParameter("message"));
         User newUser= new User();
         modelAndView.addObject("newUser", newUser);
+        modelAndView.addObject("newRole", new Role());
         modelAndView.setViewName("user");
         return modelAndView;
     }
