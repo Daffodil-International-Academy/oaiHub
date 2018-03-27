@@ -58,6 +58,7 @@ public class UserController {
         Optional<User> user= userDao.find(id);
         modelAndView.addObject("newUser", user.get());
         modelAndView.addObject("users", userDao.getAll());
+        modelAndView.addObject("roles", roleDao.getAll());
         modelAndView.setViewName("user");
         return modelAndView;
     }
