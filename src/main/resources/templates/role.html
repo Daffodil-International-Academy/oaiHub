@@ -3,41 +3,49 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <title>Role</title>
 </head>
 <body>
     <h1>Role Page</h1>
+    <div class="container">
+        <h2>Role Form</h2>
+        <form action="/action_page.php" th:action="@{/role/saveRole}" method="post">
+            <div class="form-group">
+                <label for="role_id">ID:</label>
+                <input type="text" class="form-control" id="role_id" placeholder="Please enter role Id" name="id" th:field="${newRole.id}" autofocus="autofocus">
+            </div>
+            <div class="form-group">
+                <label for="roleName">Role Name:</label>
+                <input type="text" class="form-control" name="roleName" id="roleName" th:field="${newRole.roleName}" autofocus="autofocus"/>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg">Save</button>
+            <a href="#" th:href="@{/role/rolePage}" class="btn btn-info btn-lg" role="button">New</a>
+        </form>
+        <h3 th:text="${message}"></h3>
 
-    <form class="form-group" action="/role/saveRole" th:action="@{/role/saveRole}" method="post">
-        <div class="form-group">
-            <label for="id">ID: </label>
-            <input type="text" readonly class="form-control" name="id" id="id" th:field="${newRole.id}" />
-        </div>
-        <div class="form-group">
-            <label for="roleName">Role Name:</label>
-            <input type="text" class="form-control" name="roleName" id="roleName" th:field="${newRole.roleName}"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="#" th:href="@{/role/rolePage}" class="btn btn-danger" role="button">New</a>
-    </form>
 
-    <h3 th:text="${message}"></h3>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Role Id</th>
-            <th>Role Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="role : ${roles}">
-            <td th:text="${role.id}">1</td>
-            <td th:text="${role.roleName}">2</td>
-            <td><a href="/role/findForEditRole/1" th:href="@{/role/findForEditRole/__${role.id}__}">Edit</a></td>
-            <td><a href="/role/deleteRole/1" th:href="@{/role/deleteRole/__${role.id}__}">Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
+        <!--table for showing role data-->
+        <table class="table  table-hover table-striped table-bordered">
+            <thead>
+            <tr class="table-secondary">
+                <th scope="col">Role Id</th>
+                <th scope="col">Role Name</th>
+                <th scope="col" colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="role : ${roles}">
+                <td th:text="${role.id}" class="table-light">1</td>
+                <td th:text="${role.roleName}">2</td>
+                <td  class="table-light"><a href="/role/findForEditRole/1" th:href="@{/role/findForEditRole/__${role.id}__}"class="btn btn-info btn-sm" role="button">Edit</a></td>
+                <td><a href="/role/deleteRole/1" th:href="@{/role/deleteRole/__${role.id}__}" class="btn btn-danger btn-sm" role="button">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

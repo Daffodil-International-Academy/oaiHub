@@ -15,7 +15,7 @@ public class HomeController {
     @RequestMapping(value = { "/" }, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("fragments/layout");
         return modelAndView;
     }
 
