@@ -29,9 +29,7 @@ public class RoleController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("roles", roleDao.getAll());
         modelAndView.addObject("message",  request.getParameter("message"));
-        Role newRole= new Role();
-        newRole.setId(roleDao.countForMaxId());
-        modelAndView.addObject("newRole", newRole);
+        modelAndView.addObject("newRole", new Role());
         modelAndView.setViewName("role");
         return modelAndView;
     }

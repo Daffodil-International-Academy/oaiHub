@@ -48,9 +48,5 @@ public class RoleDao implements GenericInterface<Role>{
         return roleRepository.findById(id);
     }
 
-    public long countForMaxId(){
-        return roleRepository.countForMaxId()+1;
-    }
-
 
 }

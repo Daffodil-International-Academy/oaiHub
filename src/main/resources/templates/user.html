@@ -8,45 +8,43 @@
 <body>
 <h1>User Page</h1>
 
-<form class="form-group" th:object="${newUser}" action="/user/saveUser" th:action="@{/user/saveUser}" method="post">
+<form class="form-group" action="/user/saveUser" th:action="@{/user/saveUser}" method="post">
     <div class="form-group">
         <label for="id">ID: </label>
-        <input type="text" readonly class="form-control" name="id" id="id" th:field="*{id}" />
+        <input type="text" readonly class="form-control" name="id" id="id" th:field="${newUser.id}" />
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="text" class="form-control" name="email" id="email" th:field="*{email}"/>
+        <input type="text" class="form-control" name="email" id="email" th:field="${newUser.email}"/>
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="text" class="form-control" name="password" id="password" th:field="*{password}"/>
+        <input type="text" class="form-control" name="password" id="password" th:field="${newUser.password}"/>
     </div>
     <div class="form-group">
         <label for="firstName">First Name:</label>
-        <input type="text" class="form-control" name="firstName" id="firstName" th:field="*{firstName}"/>
+        <input type="text" class="form-control" name="firstName" id="firstName" th:field="${newUser.firstName}"/>
     </div>
     <div class="form-group">
         <label for="lastName">Last Name:</label>
-        <input type="text" class="form-control" name="lastName" id="lastName" th:field="*{lastName}"/>
+        <input type="text" class="form-control" name="lastName" id="lastName" th:field="${newUser.lastName}"/>
     </div>
     <div class="form-group">
         <label for="mobileNumber">Mobile Number:</label>
-        <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" th:field="*{mobileNumber}"/>
+        <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" th:field="${newUser.mobileNumber}"/>
     </div>
     <div class="form-group">
         <label for="active">Active:</label>
-        <input type="text" class="form-control" name="active" id="active" th:field="*{active}"/>
+        <input type="text" class="form-control" name="active" id="active" th:field="${newUser.active}"/>
     </div>
     <div class="form-group">
-        <label>Role Id:</label>
-        <select th:field="${newRole}">
+        <label for="roleId">Role Id:</label>
+        <select>
             <option th:each="role : ${roles}"
                     th:value="${role}"
-                    th:text="${role.roleName}"></option>
+                    th:text="${role.roleName} + ' (' +${role.id} + ') '"></option>
         </select>
-        <input type="text" class="form-control" name="active" id="active" th:field="*{id}" th:value="${newRole.id}"/>
-        <!--<label for="roleId">Role Id: </label>-->
-        <!--<input type="text" class="form-control" name="roleId" id="roleId" th:field="*{roleId}"/>-->
+        <input type="text" class="form-control" name="roleId" id="roleId" th:field="${newUser.roleId}"/>
     </div>
 
 
