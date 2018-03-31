@@ -37,8 +37,7 @@ public class UserController {
 //            System.out.println(role.getRoleName());
 //        }
         modelAndView.addObject("message",  request.getParameter("message"));
-        User newUser= new User();
-        modelAndView.addObject("newUser", newUser);
+        modelAndView.addObject("newUser", new User());
         modelAndView.addObject("newRole", new Role());
         modelAndView.setViewName("user");
         return modelAndView;

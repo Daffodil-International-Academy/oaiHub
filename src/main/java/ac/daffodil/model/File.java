@@ -13,21 +13,17 @@ public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "file_id")
-    private Integer file_id;
+    private Long file_id;
 
     @Column(name = "exam_id")
 
-    private Integer exam_id;
+    private Long exam_id;
 
     @Column(name = "file_type")
     private String file_type;
 
     @Column(name = "file_name")
     private String file_name;
-
-
-    @Column(name ="file" )
-    private Blob file;
 
     @Column(name = "subject_name")
     private String subject_name;
@@ -36,27 +32,26 @@ public class File {
     public File() {
     }
 
-    public File(Integer exam_id, String file_type, String file_name, Blob file, String subject_name) {
+    public File(Long exam_id, String file_type, String file_name, String subject_name) {
         this.exam_id = exam_id;
         this.file_type = file_type;
         this.file_name = file_name;
-        this.file = file;
         this.subject_name = subject_name;
     }
 
-    public Integer getFile_id() {
+    public Long getFile_id() {
         return file_id;
     }
 
-    public void setFile_id(Integer file_id) {
+    public void setFile_id(Long file_id) {
         this.file_id = file_id;
     }
 
-    public Integer getExam_id() {
+    public Long getExam_id() {
         return exam_id;
     }
 
-    public void setExam_id(Integer exam_id) {
+    public void setExam_id(Long exam_id) {
         this.exam_id = exam_id;
     }
 
@@ -76,14 +71,6 @@ public class File {
         this.file_name = file_name;
     }
 
-    public Blob getFile() {
-        return file;
-    }
-
-    public void setFile(Blob file) {
-        this.file = file;
-    }
-
     public String getSubject_name() {
         return subject_name;
     }
@@ -99,7 +86,6 @@ public class File {
                 ", exam_id=" + exam_id +
                 ", file_type='" + file_type + '\'' +
                 ", file_name='" + file_name + '\'' +
-                ", file=" + file +
                 ", subject_name='" + subject_name + '\'' +
                 '}';
     }
