@@ -2,6 +2,8 @@ package ac.daffodil.model;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Bithy on 3/21/2018.
@@ -28,6 +30,9 @@ public class File {
     @Column(name = "subject_name")
     private String subject_name;
 
+
+    @OneToMany(mappedBy = "file")
+    private List<Comments> comments=new ArrayList<>();
 
     public File() {
     }
@@ -77,6 +82,18 @@ public class File {
 
     public void setSubject_name(String subject_name) {
         this.subject_name = subject_name;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void addComments(Comments comments) {
+        this.comments.add(comments);
+    }
+
+    public void removeComments(Comments comments) {
+        this.comments.remove(comments);
     }
 
     @Override

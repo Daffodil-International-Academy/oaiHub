@@ -26,6 +26,9 @@ public class Comments {
     @UpdateTimestamp
     private LocalDateTime updated_date_time;
 
+    @ManyToOne
+    private File file;
+
     public Comments() {
     }
 
@@ -49,7 +52,7 @@ public class Comments {
         this.comment_text = comment_text;
     }
 
-        public LocalDateTime getDate_time() {
+    public LocalDateTime getDate_time() {
         return date_time;
     }
 
@@ -57,6 +60,13 @@ public class Comments {
         return updated_date_time;
     }
 
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
     @Override
     public String toString() {
         return "Comments{" +
@@ -66,13 +76,4 @@ public class Comments {
                 ", updated_date_time=" + updated_date_time +
                 '}';
     }
-
-
-//    @Override
-//    public String toString() {
-//        return "Comments{" +
-//                "comment_id=" + comment_id +
-//                ", comment_text='" + comment_text + '\'' +
-//                '}';
-//    }
 }
