@@ -1,7 +1,7 @@
 package ac.daffodil.model;
 
 /**
- * Created by Bithi on 4/2/2018.
+ * Created by Bithy on 4/2/2018.
  */
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,19 +26,25 @@ public class Comments {
     @UpdateTimestamp
     private LocalDateTime updated_date_time;
 
+
+
     @ManyToOne
     private File file;
+
+    @ManyToOne
+    private User user;
 
     public Comments() {
     }
 
-    public Comments(String comment_text, LocalDateTime date_time, LocalDateTime updated_date_time) {
+
+
+    public Comments(String comment_text, LocalDateTime date_time, LocalDateTime updated_date_time, File file) {
         this.comment_text = comment_text;
         this.date_time = date_time;
         this.updated_date_time = updated_date_time;
+        this.file = file;
     }
-
-
 
     public Long getComment_id() {
         return comment_id;
@@ -67,6 +73,15 @@ public class Comments {
     public void setFile(File file) {
         this.file = file;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Comments{" +

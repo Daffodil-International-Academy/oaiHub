@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * Created by codin on 3/20/2018.
@@ -46,6 +47,8 @@ public class User {
     @Column(name = "roleId")
     private long roleId;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comments> comments;
 
     public User() {
     }
@@ -112,6 +115,17 @@ public class User {
 
     public void setRoleId(long roleId) {
         this.roleId = roleId;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void addComments(Comments comments) {
+        this.comments.add(comments);
+    }
+    public void removeComments(Comments comments) {
+        this.comments.remove(comments);
     }
 
     @Override

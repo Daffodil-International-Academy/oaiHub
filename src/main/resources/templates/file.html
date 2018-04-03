@@ -57,10 +57,9 @@
         <td th:text="${file.exam_id}">2</td>
         <td th:text="${file.file_type}">3</td>
         <td th:text="${file.file_name}">4</td>
-        <td  class="table-light"><a href="/file/files/4" th:href="@{/file/files/__${file.file_name}__}"class="btn btn-info btn-sm" role="button">Download</a></td>
         <td th:text="${file.subject_name}">5</td>
-
-
+        <td  class="table-light"><a th:href="@{/file/files/__${file.file_name}__}"class="btn btn-info btn-sm" role="button">Download</a></td>
+        <td  class="table-light"><a th:href="@{/file/findForFile/__${file.file_id}__}"class="btn btn-info btn-sm" role="button">Comment</a></td>
     </tr>
     </tbody>
 </table>

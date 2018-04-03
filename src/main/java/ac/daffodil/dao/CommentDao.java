@@ -36,7 +36,8 @@ public class CommentDao implements GenericInterface<Comments> {
 
     @Override
     public List<Comments> getAll() {
-        return null;
+        return commentRepository.findAll();
+
     }
 
     @Override

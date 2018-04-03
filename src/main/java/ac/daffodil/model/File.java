@@ -96,6 +96,10 @@ public class File {
         this.comments.remove(comments);
     }
 
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "File{" +

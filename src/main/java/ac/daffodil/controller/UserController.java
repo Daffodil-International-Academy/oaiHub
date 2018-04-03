@@ -2,6 +2,7 @@ package ac.daffodil.controller;
 
 import ac.daffodil.dao.RoleDao;
 import ac.daffodil.dao.UserDao;
+import ac.daffodil.model.Comments;
 import ac.daffodil.model.Role;
 import ac.daffodil.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,8 @@ public class UserController {
         modelAndView.addObject("message", " Data Has Been Deleted...");
         return "redirect:/user/userPage";
     }
+
+
+
 
 }
