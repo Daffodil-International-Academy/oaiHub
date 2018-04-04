@@ -3,6 +3,8 @@ package ac.daffodil.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Bithy on 3/21/2018.
@@ -32,6 +34,9 @@ public class File {
     @Column(name="year")
     private String year;
 
+
+    @OneToMany(mappedBy = "file")
+    private List<Comments> comments=new ArrayList<>();
 
     public File() {
     }
@@ -92,6 +97,22 @@ public class File {
         this.year = year;
     }
 
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void addComments(Comments comments) {
+        this.comments.add(comments);
+    }
+
+    public void removeComments(Comments comments) {
+        this.comments.remove(comments);
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "File{" +
@@ -100,7 +121,6 @@ public class File {
                 ", file_type='" + file_type + '\'' +
                 ", file_name='" + file_name + '\'' +
                 ", subject_name='" + subject_name + '\'' +
-                ", year='" + year + '\'' +
                 '}';
     }
 }

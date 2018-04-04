@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * Created by codin on 3/20/2018.
@@ -45,6 +46,7 @@ public class User {
 
     @Column(name = "roleId")
     private long roleId;
+
 
 
     public User() {
@@ -113,6 +115,8 @@ public class User {
     public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
+
+
 
     @Override
     public String toString() {

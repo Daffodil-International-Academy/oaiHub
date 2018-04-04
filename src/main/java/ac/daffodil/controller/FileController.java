@@ -2,8 +2,11 @@ package ac.daffodil.controller;
 
 import ac.daffodil.dao.ExamDao;
 import ac.daffodil.dao.FileDao;
+import ac.daffodil.dao.UserDao;
+import ac.daffodil.model.Comments;
 import ac.daffodil.model.File;
 import ac.daffodil.model.Role;
+import ac.daffodil.model.User;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +37,12 @@ public class FileController {
     @Autowired
     ExamDao examDao;
 
+
     @Autowired
     FileUploadService fileUploadService;
 
     @RequestMapping(value = "/filePage", method = RequestMethod.GET)
     public ModelAndView showFilePage(HttpServletRequest request){
-//        fileUploadService.init();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("message",  request.getParameter("message"));
         modelAndView.addObject("newFile", new File());
@@ -74,6 +77,18 @@ public class FileController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                 .body(file);
+    }
+
+    //get file id for report problem
+    @RequestMapping(value={"/findForFile/{file_id}"}, method = RequestMethod.GET)
+    public ModelAndView findForSetFileId(@PathVariable(required = true, name = "file_id") Long file_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<File> file=fileDao.find(file_id);
+        Comments comments= new Comments();
+        comments.setFile(file.get());
+        modelAndView.addObject("newComment", comments);
+        modelAndView.setViewName("comment");
+        return modelAndView;
     }
 
 
