@@ -18,6 +18,8 @@ public class Role {
     @Column(name="roleName")
     private String roleName;
 
+    @ManyToOne
+    private User user;
 
     public Role() {
 
@@ -37,6 +39,14 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

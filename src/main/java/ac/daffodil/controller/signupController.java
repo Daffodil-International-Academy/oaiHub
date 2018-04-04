@@ -6,6 +6,7 @@ import ac.daffodil.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +26,16 @@ public class signupController {
     @Autowired
     RoleDao roleDao;
 
+
+    @GetMapping("/login")
+
+    public ModelAndView login(){
+        ModelAndView mv=new ModelAndView("fragments/layout");
+        return mv;
+    }
+
+
+
     @RequestMapping(value = { "/signup" }, method = RequestMethod.GET)
     public ModelAndView signup(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -33,6 +44,8 @@ public class signupController {
         modelAndView.setViewName("fragments/signup");
         return modelAndView;
     }
+
+
 
     @RequestMapping(value="/saveUser", method = RequestMethod.POST)
     public String saveUser(User user, RedirectAttributes redirectAttributes, HttpServletRequest request) {

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Muiduzzaman Lipu on 03-Apr-18.
  */
 @Controller
-@RequestMapping("/adminDash")
+@RequestMapping("/admin")
 public class adminDashController {
     @RequestMapping(value = { "/adminDashPage" }, method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request) {

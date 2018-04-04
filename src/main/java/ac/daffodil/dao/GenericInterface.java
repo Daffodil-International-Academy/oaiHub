@@ -9,6 +9,7 @@ import java.util.Optional;
  */
 
 public interface GenericInterface<T> {
+
     T save(T val);
     T update(T val);
     boolean delete(T val);

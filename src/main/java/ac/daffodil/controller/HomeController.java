@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by codin on 3/20/2018.
  */
@@ -20,6 +22,13 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("fragments/layout");
         return modelAndView;
+    }
+    @RequestMapping(value = { "/defaultLogin" }, method = RequestMethod.GET)
+    public String defaultLogin(HttpServletRequest request) {
+        if(request.isUserInRole("admin")){
+            return "redirect:/admin/adminDashPage";
+        }
+        return "redirect:/user/userDashPage";
     }
 
 

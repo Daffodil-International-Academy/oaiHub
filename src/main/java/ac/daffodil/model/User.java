@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by codin on 3/20/2018.
@@ -47,10 +47,33 @@ public class User {
     @Column(name = "roleId")
     private long roleId;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name="user_role",joinColumns = @JoinColumn(name = "user_id",
+            referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id",
+            referencedColumnName = "role_id"))
+    private Set<Role> roles;
 
 
     public User() {
+
     }
+
+
+    public User(User user){
+        this.id=user.getId();
+        this.email=user.getEmail();
+        this.firstName=user.getFirstName();
+        this.active=user.getActive();
+        this.roleId=user.getRoleId();
+        this.roles=user.getRoles();
+        this.mobileNumber=user.getMobileNumber();
+        this.lastName=user.getLastName();
+        this.password=user.getPassword();
+
+    }
+
+
+
 
     public Long getId() {
         return id;
@@ -116,6 +139,15 @@ public class User {
         this.roleId = roleId;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+
 
 
     @Override
@@ -129,6 +161,7 @@ public class User {
                 ", mobileNumber='" + mobileNumber + '\'' +
                 ", active=" + active +
                 ", roleId=" + roleId +
+                ", roles=" + roles +
                 '}';
     }
 }

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Muiduzzaman Lipu on 04-Apr-18.
  */
 @Controller
-@RequestMapping("/userDash")
+@RequestMapping("/user")
 public class userDashFileDownloadController {
 
     @Autowired

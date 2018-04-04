@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Created by codin on 3/20/2018.
@@ -47,6 +49,10 @@ public class UserController {
     @RequestMapping(value="/saveUser", method = RequestMethod.POST)
     public String saveUser(User user) {
         ModelAndView modelAndView = new ModelAndView();
+        Optional<Role> role= roleDao.find(user.getRoleId());
+        Set<Role> roles= new HashSet<Role>();
+        roles.add(role.get());
+        user.setRoles(roles);
         userDao.save(user);
         modelAndView.addObject("message", " Data Has Been Saved...");
         return "redirect:/user/userPage";
