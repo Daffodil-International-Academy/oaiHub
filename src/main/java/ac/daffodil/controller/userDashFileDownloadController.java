@@ -1,0 +1,54 @@
+package ac.daffodil.controller;
+
+import ac.daffodil.dao.FileDao;
+import ac.daffodil.model.File;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * Created by Muiduzzaman Lipu on 04-Apr-18.
+ */
+@Controller
+@RequestMapping("/userDash")
+public class userDashFileDownloadController {
+
+    @Autowired
+    FileDao fileDao;
+
+    @Autowired
+    FileUploadService fileUploadService;
+
+    @RequestMapping(value = { "/userDashFileDownloadPage" }, method = RequestMethod.GET)
+    public ModelAndView index(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("newFile", new File());
+        modelAndView.addObject("files", fileDao.getAll());
+        modelAndView.setViewName("user/userDashFileDownload");
+        return modelAndView;
+    }
+
+    @GetMapping("/files/{filename}")
+    @ResponseBody
+    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+        Resource file = fileUploadService.loadFile(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                .body(file);
+    }
+
+    @RequestMapping(value="/search", method = RequestMethod.POST)
+    public ModelAndView search(File file) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("files", fileDao.searchFileManual(file));
+        modelAndView.addObject("newFile", new File());
+        modelAndView.setViewName("user/userDashFileDownload");
+        return modelAndView;
+    }
+}

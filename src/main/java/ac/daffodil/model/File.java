@@ -1,6 +1,7 @@
 package ac.daffodil.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.sql.Blob;
 
 /**
@@ -28,15 +29,19 @@ public class File {
     @Column(name = "subject_name")
     private String subject_name;
 
+    @Column(name="year")
+    private String year;
+
 
     public File() {
     }
 
-    public File(Long exam_id, String file_type, String file_name, String subject_name) {
+    public File(Long exam_id, String file_type, String file_name, String subject_name, @NotEmpty(message = "*Please provide year") String year) {
         this.exam_id = exam_id;
         this.file_type = file_type;
         this.file_name = file_name;
         this.subject_name = subject_name;
+        this.year = year;
     }
 
     public Long getFile_id() {
@@ -79,6 +84,14 @@ public class File {
         this.subject_name = subject_name;
     }
 
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
     @Override
     public String toString() {
         return "File{" +
@@ -87,6 +100,7 @@ public class File {
                 ", file_type='" + file_type + '\'' +
                 ", file_name='" + file_name + '\'' +
                 ", subject_name='" + subject_name + '\'' +
+                ", year='" + year + '\'' +
                 '}';
     }
 }

@@ -13,14 +13,14 @@
     <h1>Role Page</h1>
     <div class="container">
         <h2>Role Form</h2>
-        <form action="/action_page.php" th:action="@{/role/saveRole}" method="post">
+        <form th:action="@{/role/saveRole}" method="post">
             <div class="form-group">
                 <label for="role_id">ID:</label>
                 <input type="text" class="form-control" id="role_id" placeholder="Please enter role Id" name="id" th:field="${newRole.id}" autofocus="autofocus">
             </div>
             <div class="form-group">
                 <label for="roleName">Role Name:</label>
-                <input type="text" class="form-control" name="roleName" id="roleName" th:field="${newRole.roleName}" autofocus="autofocus"/>
+                <input type="text" class="form-control" name="roleName" placeholder="Please enter role Name" id="roleName" th:field="${newRole.roleName}" autofocus="autofocus"/>
             </div>
             <button type="submit" class="btn btn-success btn-lg">Save</button>
             <a href="#" th:href="@{/role/rolePage}" class="btn btn-info btn-lg" role="button">New</a>
@@ -39,10 +39,10 @@
             </thead>
             <tbody>
             <tr th:each="role : ${roles}">
-                <td th:text="${role.id}" class="table-light">1</td>
+                <td th:text="${role.id}">1</td>
                 <td th:text="${role.roleName}">2</td>
-                <td  class="table-light"><a href="/role/findForEditRole/1" th:href="@{/role/findForEditRole/__${role.id}__}"class="btn btn-info btn-sm" role="button">Edit</a></td>
-                <td><a href="/role/deleteRole/1" th:href="@{/role/deleteRole/__${role.id}__}" class="btn btn-danger btn-sm" role="button">Delete</a></td>
+                <td  class="table-light"><a th:href="@{/role/findForEditRole/__${role.id}__}"class="btn btn-info btn-sm" role="button">Edit</a></td>
+                <td><a th:href="@{/role/deleteRole/__${role.id}__}" class="btn btn-danger btn-sm" role="button">Delete</a></td>
             </tr>
             </tbody>
         </table>

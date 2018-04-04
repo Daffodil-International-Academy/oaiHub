@@ -28,7 +28,7 @@ public class ExamController {
         Exam newExam = new Exam();
         modelAndView.addObject("newExam", newExam);
         modelAndView.addObject("exams", examDao.getAll());
-        modelAndView.setViewName("exam");
+        modelAndView.setViewName("admin/adminExam");
         return modelAndView;
     }
 
@@ -45,7 +45,7 @@ public class ExamController {
         Optional<Exam> exam= examDao.find(exam_id);
         modelAndView.addObject("newExam", exam.get());
         modelAndView.addObject("exams", examDao.getAll());
-        modelAndView.setViewName("exam");
+        modelAndView.setViewName("admin/adminExam");
         return modelAndView;
     }
 

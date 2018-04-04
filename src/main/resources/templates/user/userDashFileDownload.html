@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+
+    <title>Title</title>
+</head>
+<body>
+<th:block th:replace="user/userHeader :: header"/>
+
+<div class="container">
+    <!--<div class="row mt-4">-->
+        <!--<div class="col-md-12">-->
+            <!--<form class="form-group form-inline" th:action="@{/userDash/search}" method="post">-->
+                <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<select class="form-control" th:value="${newFile.file_type}" name="file_type" id="file_type">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<option disabled="disabled" selected="selected" > &#45;&#45; select the File Type &#45;&#45;</option>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<option>Question</option>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<option>Answer</option>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<div class="form-group">-->
+                    <!--<select class="form-control" th:value="${newFile.file_type}" name="file_type" id="file_type">-->
+                        <!--<option disabled="disabled" selected="selected" > &#45;&#45; select the File Type &#45;&#45;</option>-->
+                        <!--<option>Question</option>-->
+                        <!--<option>Answer</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<select class="form-control" th:value="${newFile.subject_name}" name="subject_name" id="subject_name">-->
+                        <!--<option disabled="disabled" selected="selected" > &#45;&#45; select Subject Name &#45;&#45;</option>-->
+                        <!--<option>Bangla</option>-->
+                        <!--<option>English</option>-->
+                        <!--<option>Math</option>-->
+                        <!--<option>Physics</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<select class="form-control" th:value="${newFile.year}" name="year" id="year">-->
+                        <!--<option disabled="disabled" selected="selected" > &#45;&#45; select the Year &#45;&#45;</option>-->
+                        <!--<option>2015</option>-->
+                        <!--<option>2016</option>-->
+                        <!--<option>2017</option>-->
+                        <!--<option>2018</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+                <!--<button type="submit" class="btn btn-primary">Search</button>-->
+                <!--<a th:href="@{/userDash/userDashFileDownloadPage}"class="btn btn-info btn-sm" role="button">All Data</a>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col col-md-12">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">File Id</th>
+                    <th scope="col">Exam Id</th>
+                    <th scope="col">File Type</th>
+                    <th scope="col">File Name</th>
+                    <th scope="col">File</th>
+                    <th scope="col">Subject Name</th>
+                    <th scope="col">Year</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="file : ${files}">
+                    <td th:text="${file.file_id}" class="table-light">1</td>
+                    <td th:text="${file.exam_id}">2</td>
+                    <td th:text="${file.file_type}">3</td>
+                    <td th:text="${file.file_name}">4</td>
+                    <td><a href="/file/files/4" th:href="@{/file/files/__${file.file_name}__}"class="btn btn-info btn-sm" role="button">Download</a></td>
+                    <td th:text="${file.subject_name}">5</td>
+                    <td th:text="${file.year}">6</td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--<th:block th:replace="fragments/footer :: footer"/>-->
+
+</body>
+</html>

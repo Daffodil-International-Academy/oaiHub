@@ -39,7 +39,7 @@ public class UserController {
         modelAndView.addObject("message",  request.getParameter("message"));
         modelAndView.addObject("newUser", new User());
         modelAndView.addObject("newRole", new Role());
-        modelAndView.setViewName("user");
+        modelAndView.setViewName("admin/adminUser");
         return modelAndView;
     }
 
@@ -58,7 +58,7 @@ public class UserController {
         modelAndView.addObject("newUser", user.get());
         modelAndView.addObject("users", userDao.getAll());
         modelAndView.addObject("roles", roleDao.getAll());
-        modelAndView.setViewName("user");
+        modelAndView.setViewName("admin/adminUser");
         return modelAndView;
     }
 

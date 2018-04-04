@@ -23,17 +23,12 @@ public class Exam {
     @NotEmpty(message = "*please select exam name")
     private String exam_name;
 
-    @Column(name="exam_year")
-    @NotEmpty(message = "*Please provide exam year")
-    private String year;
-
     public Exam() {
     }
 
-    public Exam(String exam_type, String exam_name, String year) {
+    public Exam(@NotEmpty(message = "*please select an examtype") String exam_type, @NotEmpty(message = "*please select exam name") String exam_name) {
         this.exam_type = exam_type;
         this.exam_name = exam_name;
-        this.year = year;
     }
 
     public Long getExam_id() {
@@ -60,21 +55,12 @@ public class Exam {
         this.exam_name = exam_name;
     }
 
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
     @Override
     public String toString() {
         return "Exam{" +
                 "exam_id=" + exam_id +
                 ", exam_type='" + exam_type + '\'' +
                 ", exam_name='" + exam_name + '\'' +
-                ", year='" + year + '\'' +
                 '}';
     }
 }

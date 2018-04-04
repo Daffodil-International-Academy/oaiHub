@@ -30,7 +30,7 @@ public class RoleController {
         modelAndView.addObject("roles", roleDao.getAll());
         modelAndView.addObject("message",  request.getParameter("message"));
         modelAndView.addObject("newRole", new Role());
-        modelAndView.setViewName("role");
+        modelAndView.setViewName("admin/adminRole");
         return modelAndView;
     }
 
@@ -48,7 +48,7 @@ public class RoleController {
         Optional<Role> role= roleDao.find(id);
         modelAndView.addObject("newRole", role.get());
         modelAndView.addObject("roles", roleDao.getAll());
-        modelAndView.setViewName("role");
+        modelAndView.setViewName("admin/adminRole");
         return modelAndView;
     }
 

@@ -17,7 +17,7 @@
         <select>
             <option th:each="exam : ${exams}"
                     th:value="${exam.exam_id}"
-                    th:text="${exam.exam_name} + ' (' +${exam.exam_id} + ') '"></option>
+                    th:text="${exam.exam_name}+ ' (' +${exam.exam_id} + ') '"></option>
         </select>
         <input type="text" class="form-control" name="exam_id" id="exam_id" th:field="${newFile.exam_id}"/>
     </div>
@@ -37,6 +37,21 @@
         <label for="subject_name">Subject Name:</label>
         <input type="text" class="form-control" name="subject_name" id="subject_name" th:field="${newFile.subject_name}"/>
     </div>
+    <div class="form-group">
+        <label for="year">Year: </label>
+        <select class="form-control" th:value="${newFile.year}" name="year" id="year">
+            <option disabled="disabled" selected="selected" > -- select the Year --</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+        </select>
+    </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
     <a href="#" th:href="@{/file/filePage}" class="btn btn-danger" role="button">New</a>
@@ -49,6 +64,7 @@
         <th scope="col">File Type</th>
         <th scope="col">File</th>
         <th scope="col">Subject Name</th>
+        <th scope="col">Year</th>
     </tr>
     </thead>
     <tbody>
@@ -59,6 +75,7 @@
         <td th:text="${file.file_name}">4</td>
         <td  class="table-light"><a href="/file/files/4" th:href="@{/file/files/__${file.file_name}__}"class="btn btn-info btn-sm" role="button">Download</a></td>
         <td th:text="${file.subject_name}">5</td>
+        <td th:text="${file.year}">6</td>
 
 
     </tr>

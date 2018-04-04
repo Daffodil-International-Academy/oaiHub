@@ -45,7 +45,7 @@ public class FileController {
         modelAndView.addObject("newFile", new File());
         modelAndView.addObject("exams", examDao.getAll());
         modelAndView.addObject("files", fileDao.getAll());
-        modelAndView.setViewName("file");
+        modelAndView.setViewName("admin/adminFile");
         return modelAndView;
     }
 

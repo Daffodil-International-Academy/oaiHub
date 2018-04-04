@@ -1,27 +1,22 @@
 package ac.daffodil.controller;
 
-import ac.daffodil.dao.RoleDao;
-import ac.daffodil.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
- * Created by codin on 3/20/2018.
+ * Created by Muiduzzaman Lipu on 04-Apr-18.
  */
-
 @Controller
-public class HomeController {
-
-    @RequestMapping(value = { "/" }, method = RequestMethod.GET)
-    public ModelAndView index() {
+@RequestMapping("/userDash")
+public class userDashController {
+    @RequestMapping(value = { "/userDashPage" }, method = RequestMethod.GET)
+    public ModelAndView index(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("fragments/layout");
+        modelAndView.setViewName("user/userDash");
         return modelAndView;
     }
-
-
-
 }
