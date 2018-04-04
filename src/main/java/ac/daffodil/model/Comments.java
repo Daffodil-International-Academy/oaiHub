@@ -51,6 +51,10 @@ public class Comments {
         return comment_id;
     }
 
+    public void setComment_id(Long comment_id) {
+        this.comment_id = comment_id;
+    }
+
     public String getComment_text() {
         return comment_text;
     }

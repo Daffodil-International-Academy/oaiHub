@@ -12,6 +12,11 @@
             <input type="text"  class="form-control" name="file_id" id="file_id"  th:field="${newComment.file.file_id}"  />
         </div>
 
+        <div th:if="${#strings.contains(#httpServletRequest.requestURI, '/comment/find/')}">
+            <label>Comment Id :</label>
+            <input type="text" class="form-control" name="comment_id" th:field="${newComment.comment_id}" />
+        </div>
+
         <div class="form_group">
             <label>Email</label>
             <input type="text" class="form-control" name="user_email" th:field="${newComment.user_email}" />
@@ -27,6 +32,7 @@
     <table class="table">
         <tbody>
         <tr th:each="comment : ${comments}">
+            <td th:text="${comment.comment_id}">1</td>
             <td th:text="${comment.user_email}">1</td>
             <td th:text="${comment.comment_text}">1</td>
             <td><a  th:href="@{/comment/find/__${comment.comment_id}__}">Edit</a></td>
