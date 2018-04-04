@@ -48,7 +48,16 @@ public class CommentController {
     }
 
 
-
+    @RequestMapping(value={"/comment/find/{comment_id}"}, method = RequestMethod.GET)
+    public ModelAndView findForEditExam(@PathVariable(required = true, name = "comment_id") Long comment_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<Comments> comments= commentDao.find(comment_id);
+        System.out.println(comments);
+        modelAndView.addObject("newComment", comments.get());
+        modelAndView.addObject("comments", commentDao.getAll());
+        modelAndView.setViewName("comment");
+        return modelAndView;
+    }
 
 
 

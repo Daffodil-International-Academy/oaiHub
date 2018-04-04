@@ -25,8 +25,9 @@ public class CommentDao implements GenericInterface<Comments> {
     }
 
     @Override
-    public Comments update(Comments val) {
-        return null;
+    public Comments update(Comments comments) {
+        commentRepository.save(comments);
+        return comments;
     }
 
     @Override
@@ -42,6 +43,6 @@ public class CommentDao implements GenericInterface<Comments> {
 
     @Override
     public Optional<Comments> find(Long id) {
-        return null;
+        return commentRepository.findById(id);
     }
 }
