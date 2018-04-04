@@ -30,9 +30,8 @@
     </form>
 
     <table class="table">
-        <tbody>
+        <tbody >
         <tr th:each="comment : ${comments}">
-            <td th:text="${comment.comment_id}">1</td>
             <td th:text="${comment.user_email}">1</td>
             <td th:text="${comment.comment_text}">1</td>
             <td><a  th:href="@{/comment/find/__${comment.comment_id}__}">Edit</a></td>

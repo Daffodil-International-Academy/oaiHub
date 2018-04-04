@@ -28,12 +28,8 @@ public class Comments {
     @UpdateTimestamp
     private LocalDateTime updated_date_time;
 
-
-
     @ManyToOne
     private File file;
-
-
 
     public Comments() {
     }
