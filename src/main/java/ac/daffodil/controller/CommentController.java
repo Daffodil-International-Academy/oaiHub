@@ -1,7 +1,9 @@
 package ac.daffodil.controller;
 
+import ac.daffodil.dao.ChildCommentDao;
 import ac.daffodil.dao.CommentDao;
 import ac.daffodil.dao.FileDao;
+import ac.daffodil.model.ChildComments;
 import ac.daffodil.model.Comments;
 import ac.daffodil.model.File;
 import org.slf4j.Logger;
@@ -28,6 +30,10 @@ public class CommentController {
 
     @Autowired
     FileDao fileDao;
+
+
+    @Autowired
+    ChildCommentDao childCommentDao;
 
     @RequestMapping(value = { "/comment" }, method = RequestMethod.GET)
     public ModelAndView index() {
@@ -69,6 +75,11 @@ public class CommentController {
         return "redirect:/comment";
     }
 
+    @RequestMapping(value = { "/comment/saveChildComment" }, method = RequestMethod.POST)
+    public String saveChildComment(ChildComments childComments) {
+        childCommentDao.save(childComments);
+        return "redirect:/comment";
+    }
 
 
 }

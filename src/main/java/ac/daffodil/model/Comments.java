@@ -9,6 +9,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "comments")
@@ -31,6 +33,13 @@ public class Comments {
     @ManyToOne
     private File file;
 
+    @OneToMany(mappedBy = "comments")
+    private List<ChildComments> childComments=new ArrayList<>();
+
+
+
+
+
     public Comments() {
     }
 
@@ -42,6 +51,7 @@ public class Comments {
         this.updated_date_time = updated_date_time;
         this.file = file;
     }
+
 
     public Long getComment_id() {
         return comment_id;
@@ -83,15 +93,41 @@ public class Comments {
         this.user_email = user_email;
     }
 
+
+    public void setDate_time(LocalDateTime date_time) {
+        this.date_time = date_time;
+    }
+
+    public List<ChildComments> getChildComments() {
+        return childComments;
+    }
+
+    public void setChildComments(List<ChildComments> childComments) {
+        this.childComments = childComments;
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "Comments{" +
+//                "comment_id=" + comment_id +
+//                ", user_email='" + user_email + '\'' +
+//                ", comment_text='" + comment_text + '\'' +
+//                ", date_time=" + date_time +
+//                ", updated_date_time=" + updated_date_time +
+//                ", file=" + file +
+//                '}';
+//    }
+
+
     @Override
     public String toString() {
         return "Comments{" +
-                "comment_id=" + comment_id +
-                ", user_email='" + user_email + '\'' +
+                "user_email='" + user_email + '\'' +
                 ", comment_text='" + comment_text + '\'' +
                 ", date_time=" + date_time +
                 ", updated_date_time=" + updated_date_time +
                 ", file=" + file +
+                ", childComments=" + childComments +
                 '}';
     }
 }
