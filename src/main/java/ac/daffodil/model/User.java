@@ -47,8 +47,7 @@ public class User {
     @Column(name = "roleId")
     private long roleId;
 
-    @OneToMany(mappedBy = "user")
-    private List<Comments> comments;
+
 
     public User() {
     }
@@ -117,16 +116,7 @@ public class User {
         this.roleId = roleId;
     }
 
-    public List<Comments> getComments() {
-        return comments;
-    }
 
-    public void addComments(Comments comments) {
-        this.comments.add(comments);
-    }
-    public void removeComments(Comments comments) {
-        this.comments.remove(comments);
-    }
 
     @Override
     public String toString() {

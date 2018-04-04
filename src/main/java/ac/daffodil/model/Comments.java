@@ -18,6 +18,8 @@ public class Comments {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long comment_id;
 
+    private String user_email;
+
     private String comment_text;
 
     @CreationTimestamp
@@ -31,15 +33,14 @@ public class Comments {
     @ManyToOne
     private File file;
 
-    @ManyToOne
-    private User user;
+
 
     public Comments() {
     }
 
 
-
-    public Comments(String comment_text, LocalDateTime date_time, LocalDateTime updated_date_time, File file) {
+    public Comments(String user_email, String comment_text, LocalDateTime date_time, LocalDateTime updated_date_time, File file) {
+        this.user_email = user_email;
         this.comment_text = comment_text;
         this.date_time = date_time;
         this.updated_date_time = updated_date_time;
@@ -74,21 +75,23 @@ public class Comments {
         this.file = file;
     }
 
-    public User getUser() {
-        return user;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
     }
 
     @Override
     public String toString() {
         return "Comments{" +
                 "comment_id=" + comment_id +
+                ", user_email='" + user_email + '\'' +
                 ", comment_text='" + comment_text + '\'' +
                 ", date_time=" + date_time +
                 ", updated_date_time=" + updated_date_time +
+                ", file=" + file +
                 '}';
     }
 }

@@ -37,8 +37,6 @@ public class FileController {
     @Autowired
     ExamDao examDao;
 
-    @Autowired
-    UserDao userDao;
 
     @Autowired
     FileUploadService fileUploadService;
@@ -81,7 +79,7 @@ public class FileController {
                 .body(file);
     }
 
-
+    //get file id for report problem
     @RequestMapping(value={"/findForFile/{file_id}"}, method = RequestMethod.GET)
     public ModelAndView findForSetFileId(@PathVariable(required = true, name = "file_id") Long file_id) {
         ModelAndView modelAndView = new ModelAndView();
@@ -94,15 +92,4 @@ public class FileController {
     }
 
 
-    @RequestMapping
-    public ModelAndView findForSetUserName(@PathVariable(required = true,name="id")Long id){
-        ModelAndView modelAndView=new ModelAndView();
-        Optional<User> user=userDao.find(id);
-        Comments comments=new Comments();
-        comments.setUser(user.get());
-        modelAndView.addObject("newComment", comments);
-        modelAndView.setViewName("comment");
-        return modelAndView;
-
-    }
 }

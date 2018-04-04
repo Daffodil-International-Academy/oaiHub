@@ -11,9 +11,10 @@
             <label for="file_id">File ID: </label>
             <input type="text"  class="form-control" name="file_id" id="file_id"  th:field="${newComment.file.file_id}"  />
         </div>
-        <div class="form-group">
-            <label for="user_user_name">User Name: </label>
-            <input type="text"  class="form-control" name="user_user_name" id="user_user_name"  th:field="${newComment.user.id}"  />
+
+        <div class="form_group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="user_email" th:field="${newComment.user_email}" />
         </div>
         <div class="form_group">
             <label> add comment</label>
@@ -26,6 +27,7 @@
     <table class="table">
         <tbody>
         <tr th:each="comment : ${comments}">
+            <td th:text="${comment.user_email}">1</td>
             <td th:text="${comment.comment_text}">1</td>
         </tr>
         </tbody>
