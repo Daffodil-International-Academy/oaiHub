@@ -31,8 +31,9 @@ public class CommentDao implements GenericInterface<Comments> {
     }
 
     @Override
-    public boolean delete(Comments val) {
-        return false;
+    public boolean delete(Comments comments) {
+        commentRepository.delete(comments);
+        return true;
     }
 
     @Override

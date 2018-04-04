@@ -36,7 +36,7 @@
             <td th:text="${comment.user_email}">1</td>
             <td th:text="${comment.comment_text}">1</td>
             <td><a  th:href="@{/comment/find/__${comment.comment_id}__}">Edit</a></td>
-            <!--<td><a href="/exam/delete/1" th:href="@{/exam/delete/__${exam.exam_id}__}">Delete</a></td>-->
+            <td><a href="/comment/delete/1" th:href="@{/comment/delete/__${comment.comment_id}__}">Delete</a></td>
         </tr>
         </tbody>
     </table>

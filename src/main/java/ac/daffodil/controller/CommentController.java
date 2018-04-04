@@ -49,7 +49,7 @@ public class CommentController {
 
 
     @RequestMapping(value={"/comment/find/{comment_id}"}, method = RequestMethod.GET)
-    public ModelAndView findForEditExam(@PathVariable(required = true, name = "comment_id") Long comment_id) {
+    public ModelAndView findForEditComment(@PathVariable(required = true, name = "comment_id") Long comment_id) {
         ModelAndView modelAndView = new ModelAndView();
         Optional<Comments> comments= commentDao.find(comment_id);
         System.out.println(comments);
@@ -57,6 +57,16 @@ public class CommentController {
         modelAndView.addObject("comments", commentDao.getAll());
         modelAndView.setViewName("comment");
         return modelAndView;
+    }
+
+
+    @RequestMapping(value="/comment/delete/{comment_id}", method = RequestMethod.GET)
+    public String deleteExam(@PathVariable(required = true, name = "comment_id") Long comment_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<Comments> comments= commentDao.find(comment_id);
+        commentDao.delete(comments.get());
+        modelAndView.addObject("message", " Data Has Been Deleted...");
+        return "redirect:/comment";
     }
 
 
