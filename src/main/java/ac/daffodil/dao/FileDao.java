@@ -46,8 +46,4 @@ public class FileDao implements GenericInterface<File>{
     public Optional<File> find(Long id) {
         return fileRepository.findById(id);
     }
-
-    public List<File> searchFileManual(File file) {
-        return fileRepository.searchFileManual(file.getFile_type(), file.getSubject_name(), file.getYear());
-    }
 }

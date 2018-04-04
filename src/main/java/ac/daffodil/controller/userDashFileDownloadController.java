@@ -43,12 +43,4 @@ public class userDashFileDownloadController {
                 .body(file);
     }
 
-    @RequestMapping(value="/search", method = RequestMethod.POST)
-    public ModelAndView search(File file) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("files", fileDao.searchFileManual(file));
-        modelAndView.addObject("newFile", new File());
-        modelAndView.setViewName("user/userDashFileDownload");
-        return modelAndView;
-    }
 }
