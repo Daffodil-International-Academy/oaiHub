@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>hello commm</h1>
-    <form class="form-group" action="/comment/saveComment" th:action="@{/comment/saveComment}" method="post" enctype="multipart/form-data">
+    <form class="form-group" action="/comment/saveComment" th:action="@{/comment/saveComment}" method="post">
         <div class="form-group">
             <label for="file_id">File ID: </label>
             <input type="text"  class="form-control" name="file_id" id="file_id"  th:field="${newComment.file.file_id}"  />
@@ -34,8 +34,8 @@
         <tr th:each="comment : ${comments}">
             <td th:text="${comment.user_email}">1</td>
             <td th:text="${comment.comment_text}">1</td>
-            <td><a  th:href="@{/comment/find/__${comment.comment_id}__}">Edit</a></td>
-            <td><a href="/comment/delete/1" th:href="@{/comment/delete/__${comment.comment_id}__}">Delete</a></td>
+            <td ><a  th:href="@{/comment/find/__${comment.comment_id}__}">Edit</a></td>
+            <td><a th:href="@{/comment/delete/__${comment.comment_id}__}">Delete</a></td>
         </tr>
         </tbody>
     </table>

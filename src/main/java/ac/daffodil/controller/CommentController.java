@@ -6,15 +6,20 @@ import ac.daffodil.dao.FileDao;
 import ac.daffodil.model.ChildComments;
 import ac.daffodil.model.Comments;
 import ac.daffodil.model.File;
+import ac.daffodil.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -31,25 +36,64 @@ public class CommentController {
     @Autowired
     FileDao fileDao;
 
-
     @Autowired
     ChildCommentDao childCommentDao;
+
+    Comments comments= new Comments();
+    List<Comments> comments1= new LinkedList<>();
 
     @RequestMapping(value = { "/comment" }, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         Comments newComment=new Comments();
-        modelAndView.addObject("newComment", newComment);
-        modelAndView.addObject("comments", commentDao.getAll());
-        modelAndView.setViewName("comment");
+
+        comments1= new LinkedList<>();
+        for (Comments cmt : commentDao.getAll()) {
+            if (cmt.getFile().getFile_id() == comments.getFile().getFile_id()){
+                comments1.add(cmt);
+            }
+        }
+
+        modelAndView.addObject("newComment", comments);
+        modelAndView.addObject("commentList", comments1);
+        modelAndView.setViewName("user/userDashComment");
         return modelAndView;
     }
 
 
+    //get file id for review problem
+    @RequestMapping(value={"/comment/findForFile/{file_id}"}, method = RequestMethod.GET)
+    public ModelAndView findForSetFileId(@PathVariable(required = true, name = "file_id") Long file_id) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Optional<File> file=fileDao.find(file_id);
+        comments.setFile(file.get());
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof User) {
+            String email = ((User)principal).getEmail();
+            comments.setUser_email(email);
+        }
+
+        comments1= new LinkedList<>();
+        for (Comments cmt : commentDao.getAll()) {
+            if (cmt.getFile().getFile_id() == file_id){
+                comments1.add(cmt);
+            }
+        }
+
+        modelAndView.addObject("commentList", comments1);
+        modelAndView.addObject("newComment", comments);
+        modelAndView.setViewName("user/userDashComment");
+        return modelAndView;
+    }
+
 
     @RequestMapping(value = { "/comment/saveComment" }, method = RequestMethod.POST)
-    public String saveComment(Comments comments) {
+    public String saveComment(Comments comments, RedirectAttributes redirectAttributes) {
         commentDao.save(comments);
+        redirectAttributes.addFlashAttribute("message", "You Comment is= "+comments.getComment_text());
+        redirectAttributes.addFlashAttribute("alertClass", "alert-success");
         return "redirect:/comment";
     }
 
@@ -60,8 +104,8 @@ public class CommentController {
         Optional<Comments> comments= commentDao.find(comment_id);
         System.out.println(comments);
         modelAndView.addObject("newComment", comments.get());
-        modelAndView.addObject("comments", commentDao.getAll());
-        modelAndView.setViewName("comment");
+        modelAndView.addObject("commentList", comments1);
+        modelAndView.setViewName("user/userDashComment");
         return modelAndView;
     }
 

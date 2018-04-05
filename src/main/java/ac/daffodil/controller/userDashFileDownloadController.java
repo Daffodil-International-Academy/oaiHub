@@ -1,5 +1,6 @@
 package ac.daffodil.controller;
 
+import ac.daffodil.dao.CommentDao;
 import ac.daffodil.dao.FileDao;
 import ac.daffodil.model.Comments;
 import ac.daffodil.model.File;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,6 +28,9 @@ public class userDashFileDownloadController {
 
     @Autowired
     FileDao fileDao;
+
+    @Autowired
+    CommentDao commentDao;
 
     @Autowired
     FileUploadService fileUploadService;
@@ -47,24 +53,6 @@ public class userDashFileDownloadController {
                 .body(file);
     }
 
-    //get file id for report problem
-    @RequestMapping(value={"/findForFile/{file_id}"}, method = RequestMethod.GET)
-    public ModelAndView findForSetFileId(@PathVariable(required = true, name = "file_id") Long file_id) {
-        ModelAndView modelAndView = new ModelAndView();
 
-        Optional<File> file=fileDao.find(file_id);
-        Comments comments= new Comments();
-        comments.setFile(file.get());
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof User) {
-            String email = ((User)principal).getEmail();
-            comments.setUser_email(email);
-        }
-
-        modelAndView.addObject("newComment", comments);
-        modelAndView.setViewName("comment");
-        return modelAndView;
-    }
 
 }

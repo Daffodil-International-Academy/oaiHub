@@ -26,7 +26,7 @@
             <form th:action="@{/role/saveRole}" method="post">
                 <div class="form-group">
                     <label for="role_id">Role Id: </label>
-                    <input type="text" class="form-control" id="role_id" name="role_id" placeholder="Your Role Id" th:field="${newRole.id}" autofocus="autofocus">
+                    <input type="text" readonly="true" class="form-control" id="role_id" name="role_id" placeholder="Your Role Id" th:field="${newRole.id}" autofocus="autofocus">
                 </div>
                 <div class="form-group">
                     <label for="roleName">Role Name: </label>
