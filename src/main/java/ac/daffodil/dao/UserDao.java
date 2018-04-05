@@ -46,4 +46,8 @@ public class UserDao implements GenericInterface<User>{
     public Optional<User> find(Long id) {
         return userRepository.findById(id);
     }
+
+    public Optional<User> findByUsername(String userName) {
+        return userRepository.findByFirstName(userName);
+    }
 }

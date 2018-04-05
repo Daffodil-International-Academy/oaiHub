@@ -33,7 +33,9 @@ public class signupController {
 
     @GetMapping("/login")
 
-    public ModelAndView login(){
+    public ModelAndView login(RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("message", "Invalid Username or Password...");
+        redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
         ModelAndView mv=new ModelAndView("fragments/layout");
         return mv;
     }
@@ -76,7 +78,5 @@ public class signupController {
 
         }
     }
-
-
 
 }
