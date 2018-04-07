@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reply</title>
+</head>
+<body>
+<h1>Hey! this is me</h1>
+
+<form class="form-group" th:action="@{/comment/saveChildComment}" method="post">
+    <!--<div class="form-group">-->
+        <!--<label for="file_id">File ID: </label>-->
+        <!--<input type="text"  class="form-control" name="file_id" id="file_id"  th:field="${newComment.file.file_id}"  />-->
+    <!--</div>-->
+    <div>
+        <label>CComment Id : </label>
+        <input type="text" readonly="true" class="form-control" name="comment_id" />
+    </div>
+    <div class="form_group">
+        <label for="ccomments_id">Email : </label>
+        <input type="text" class="form-control" name="ccomments_id" id="ccomments_id" />
+    </div>
+    <div class="form_group">
+        <label for="sub_comments"> SubComment Comment : </label>
+        <input type="text" class="form-control" name="sub_comments" id="sub_comments"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+</body>
+</html>

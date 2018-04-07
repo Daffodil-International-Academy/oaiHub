@@ -125,5 +125,11 @@ public class CommentController {
         return "redirect:/comment";
     }
 
+    @RequestMapping("/comment/findForFile/show")
+    public ModelAndView showChildComment(){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("user/childComment");
+        return modelAndView;
+    }
 
 }

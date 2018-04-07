@@ -67,12 +67,14 @@
                 <tbody >
                 <tr th:each="comment : ${commentList}">
                     <td th:text="${comment.user_email}">1</td>
-                    <td th:text="${comment.comment_text}">1</td>
+                    <td th:text="${comment.comment_text}">2</td>
                     <td><a th:if="${newComment.user_email == comment.user_email}" th:href="@{/comment/find/__${comment.comment_id}__}">Edit</a></td>
                     <td><a th:if="${newComment.user_email == comment.user_email}" th:href="@{/comment/delete/__${comment.comment_id}__}">Delete</a></td>
+                    <td><a th:href="@{/comment/findForFile/show}" >Reply</a></td>
                 </tr>
                 </tbody>
             </table>
+            <button th:action="@{/comment/findForFile/show}">Reply</button>
         </div>
     </div>
 </div>
