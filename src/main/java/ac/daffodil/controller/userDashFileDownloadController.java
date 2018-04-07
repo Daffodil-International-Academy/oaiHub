@@ -1,6 +1,7 @@
 package ac.daffodil.controller;
 
 import ac.daffodil.dao.CommentDao;
+import ac.daffodil.dao.ExamDao;
 import ac.daffodil.dao.FileDao;
 import ac.daffodil.model.Comments;
 import ac.daffodil.model.File;
@@ -33,6 +34,9 @@ public class userDashFileDownloadController {
     CommentDao commentDao;
 
     @Autowired
+    ExamDao examDao;
+
+    @Autowired
     FileUploadService fileUploadService;
 
     @RequestMapping(value = { "/userDashFileDownloadPage" }, method = RequestMethod.GET)
@@ -40,6 +44,7 @@ public class userDashFileDownloadController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("newFile", new File());
         modelAndView.addObject("files", fileDao.getAll());
+        modelAndView.addObject("exams", examDao.getAll());
         modelAndView.setViewName("user/userDashFileDownload");
         return modelAndView;
     }

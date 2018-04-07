@@ -19,7 +19,6 @@ public class File {
     private Long file_id;
 
     @Column(name = "exam_id")
-
     private Long exam_id;
 
     @Column(name = "file_type")
