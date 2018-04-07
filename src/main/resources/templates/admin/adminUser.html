@@ -16,6 +16,14 @@
     <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
 
     <title>Title</title>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("selectRole").value;
+            document.getElementById("roleId").value = x;
+        }
+    </script>
+
 </head>
 <body>
 <th:block th:replace="admin/adminHeader :: header"/>
@@ -56,12 +64,13 @@
             </div>
             <div class="form-group">
                 <label for="roleId">Role: </label>
-                <select class="form-control">
+                <select class="form-control" id="selectRole" onchange="myFunction()">
+                    <option disabled="disabled" selected="selected" > -- select the Rols: --</option>
                     <option th:each="role : ${roles}"
-                            th:value="${role}"
+                            th:value="${role.id}"
                             th:text="${role.roleName} + ' (' +${role.id} + ') '"></option>
                 </select>
-                <input type="text" class="form-control" id="roleId" name="roleId" placeholder="Your roleId" th:field="${newUser.roleId}">
+                <input type="text" hidden="true" readonly="true" class="form-control" id="roleId" name="roleId" placeholder="Your roleId" th:field="${newUser.roleId}">
             </div>
             <button type="submit" class="btn btn-success btn-sm">Save</button>
             <a th:href="@{/user/userPage}"class="btn btn-info btn-sm" role="button">New</a>

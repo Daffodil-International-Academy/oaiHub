@@ -49,7 +49,7 @@ public class userDashFileUploadController {
             redirectAttributes.addFlashAttribute("message", "Your File Upload Successfully...");
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");
         }catch (Exception e){
-            redirectAttributes.addFlashAttribute("message", "Error...");
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
         }
 

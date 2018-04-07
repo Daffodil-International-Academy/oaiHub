@@ -16,6 +16,14 @@
     <script th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
 
     <title>Title</title>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("selectExam").value;
+            document.getElementById("exam_id").value = x;
+        }
+    </script>
+
 </head>
 <body>
 <th:block th:replace="admin/adminHeader :: header"/>
@@ -30,12 +38,13 @@
                 </div>
                 <div class="form-group">
                     <label for="exam_id">Exam Id: </label>
-                    <select class="form-control">
+                    <select class="form-control" id="selectExam" onchange="myFunction()">
+                        <option disabled="disabled" selected="selected" > -- select the Exam ID: --</option>
                         <option th:each="exam : ${exams}"
                                 th:value="${exam.exam_id}"
                                 th:text="${exam.exam_name}+ ' (' +${exam.exam_id} + ') '"></option>
                     </select>
-                    <input type="text" class="form-control" id="exam_id" name="exam_id" placeholder="Your exam Id" th:field="${newFile.exam_id}">
+                    <input type="text" hidden="true" readonly="true" class="form-control" id="exam_id" name="exam_id" placeholder="Your exam Id" th:field="${newFile.exam_id}">
                 </div>
                 <div class="form-group">
                     <label for="file_type">File Type: </label>
