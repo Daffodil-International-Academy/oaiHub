@@ -58,4 +58,10 @@ public class FileUploadService {
             throw new RuntimeException("Could not initialize storage!");
         }
     }
+
+    public void makeFolder() {
+        if (Files.notExists(rootLocation)){
+            init();
+        }
+    }
 }

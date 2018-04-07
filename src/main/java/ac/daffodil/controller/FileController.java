@@ -43,6 +43,7 @@ public class FileController {
 
     @RequestMapping(value = "/filePage", method = RequestMethod.GET)
     public ModelAndView showFilePage(HttpServletRequest request){
+        fileUploadService.makeFolder();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("message",  request.getParameter("message"));
         modelAndView.addObject("newFile", new File());

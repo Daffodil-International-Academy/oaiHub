@@ -53,7 +53,7 @@ public class userDashFileUploadController {
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
         }
 
-        return "redirect:/userDash/userDashFileUploadPage";
+        return "redirect:/user/userDashFileUploadPage";
 
     }
 }
