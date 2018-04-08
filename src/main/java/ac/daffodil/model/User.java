@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -46,6 +48,7 @@ public class User {
 
     @Column(name = "roleId")
     private long roleId;
+
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name="user_role",joinColumns = @JoinColumn(name = "user_id",

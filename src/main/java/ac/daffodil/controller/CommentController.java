@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.xml.stream.events.Comment;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -42,8 +43,12 @@ public class CommentController {
     Comments comments= new Comments();
     List<Comments> comments1= new LinkedList<>();
 
+    ChildComments childComments=new ChildComments();
+
+
+
     @RequestMapping(value = { "/comment" }, method = RequestMethod.GET)
-    public ModelAndView index() {
+    public ModelAndView commentPage() {
         ModelAndView modelAndView = new ModelAndView();
         Comments newComment=new Comments();
 
@@ -119,17 +124,37 @@ public class CommentController {
         return "redirect:/comment";
     }
 
-    @RequestMapping(value = { "/comment/saveChildComment" }, method = RequestMethod.POST)
-    public String saveChildComment(ChildComments childComments) {
-        childCommentDao.save(childComments);
-        return "redirect:/comment";
-    }
+    //    child Comment section
 
-    @RequestMapping("/comment/findForFile/show")
-    public ModelAndView showChildComment(){
-        ModelAndView modelAndView=new ModelAndView();
+
+    //comment id for reporting problem
+    @RequestMapping(value={"/findForComment/{comment_id}"}, method = RequestMethod.GET)
+    public ModelAndView findForSetCommentId(@PathVariable(required = true, name = "comment_id") Long comment_id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<Comments> comment=commentDao.find(comment_id);
+        ChildComments childComments= new ChildComments();
+        childComments.setComments(comment.get());
+        modelAndView.addObject("newComment", childComments);
+        System.out.println(childComments.getComments().getComment_id());
         modelAndView.setViewName("user/childComment");
         return modelAndView;
     }
+
+
+    //for saving childComment
+    @RequestMapping(value = { "/comment/saveChildComment" }, method = RequestMethod.POST)
+    public String saveChildComment(ChildComments childComments,RedirectAttributes redirectAttributes) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof User) {
+            String name = ((User)principal).getFirstName();
+            childComments.setUser_name(name);
+            childCommentDao.save(childComments);
+            redirectAttributes.addFlashAttribute("message", "You Comment is= "+comments.getComment_text());
+            redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+            return "redirect:/comment";
+        }
+        return "redirect:/comment";
+    }
+
 
 }

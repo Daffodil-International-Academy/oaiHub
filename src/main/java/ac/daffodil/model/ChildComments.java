@@ -17,6 +17,8 @@ public class ChildComments {
 
     private String sub_comments;
 
+    private String user_name;
+
     @ManyToOne
     private Comments comments;
 
@@ -25,13 +27,19 @@ public class ChildComments {
 
     public ChildComments(String sub_comments) {
         this.sub_comments = sub_comments;
+
     }
 
-    public Long getSub_comments_id() {
+    public ChildComments(String sub_comments, String user_name) {
+        this.sub_comments = sub_comments;
+        this.user_name = user_name;
+    }
+
+    public Long getCcomments_id() {
         return ccomments_id;
     }
 
-    public void setSub_comments_id(Integer sub_comments_id) {
+    public void setCcomments_id(Long ccomments_id) {
         this.ccomments_id = ccomments_id;
     }
 
@@ -51,26 +59,20 @@ public class ChildComments {
         this.comments = comments;
     }
 
-    public Long getCcomments_id() {
-        return ccomments_id;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setCcomments_id(Long ccomments_id) {
-        this.ccomments_id = ccomments_id;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
-    //    public Comments getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(Comments comments) {
-//        this.comments = comments;
-//    }
 
     @Override
     public String toString() {
         return "ChildComments{" +
                 "ccomments_id=" + ccomments_id +
                 ", sub_comments='" + sub_comments + '\'' +
+                ", user_name='" + user_name + '\'' +
                 ", comments=" + comments +
                 '}';
     }
