@@ -107,23 +107,11 @@ public class Comments {
         this.childComments = childComments;
     }
 
-    //    @Override
-//    public String toString() {
-//        return "Comments{" +
-//                "comment_id=" + comment_id +
-//                ", user_email='" + user_email + '\'' +
-//                ", comment_text='" + comment_text + '\'' +
-//                ", date_time=" + date_time +
-//                ", updated_date_time=" + updated_date_time +
-//                ", file=" + file +
-//                '}';
-//    }
-
-
     @Override
     public String toString() {
         return "Comments{" +
-                "user_email='" + user_email + '\'' +
+                "comment_id=" + comment_id +
+                ", user_email='" + user_email + '\'' +
                 ", comment_text='" + comment_text + '\'' +
                 ", date_time=" + date_time +
                 ", updated_date_time=" + updated_date_time +
