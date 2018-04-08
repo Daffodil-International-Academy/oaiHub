@@ -5,6 +5,7 @@ import ac.daffodil.dao.UserDao;
 import ac.daffodil.model.Role;
 import ac.daffodil.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,9 @@ import java.util.Set;
  */
 @Controller
 public class signupController {
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     UserDao userDao;
@@ -67,6 +71,7 @@ public class signupController {
                     user.setRoles(roleSet);
                 }
             }
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userDao.save(user);
             redirectAttributes.addFlashAttribute("message", "User Saved SuccessFully...");
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");

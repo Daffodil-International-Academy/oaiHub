@@ -26,7 +26,7 @@ public class User {
     private String email;
 
     @Column(name = "password")
-    @Length(min = 7, message = "*Your password must have at least 7 characters")
+    @Length(min = 4, message = "*Your password must have at least 4 characters")
     private String password;
 
     @Column(name = "firstName")
