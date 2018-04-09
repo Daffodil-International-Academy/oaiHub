@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,8 +22,11 @@ public class Comments {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long comment_id;
 
+
+    @Column(nullable = false)
     private String user_email;
 
+    @NotEmpty
     private String comment_text;
 
     @CreationTimestamp

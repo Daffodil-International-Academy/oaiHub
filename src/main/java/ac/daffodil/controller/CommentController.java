@@ -70,7 +70,6 @@ public class CommentController {
     @RequestMapping(value={"/comment/findForFile/{file_id}"}, method = RequestMethod.GET)
     public ModelAndView findForSetFileId(@PathVariable(required = true, name = "file_id") Long file_id) {
         ModelAndView modelAndView = new ModelAndView();
-
         Optional<File> file=fileDao.find(file_id);
         comments.setFile(file.get());
 
@@ -96,10 +95,10 @@ public class CommentController {
 
     @RequestMapping(value = { "/comment/saveComment" }, method = RequestMethod.POST)
     public String saveComment(Comments comments, RedirectAttributes redirectAttributes) {
-        commentDao.save(comments);
-        redirectAttributes.addFlashAttribute("message", "You Comment is= "+comments.getComment_text());
-        redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-        return "redirect:/comment";
+                commentDao.save(comments);
+                redirectAttributes.addFlashAttribute("message", "You Comment is= "+comments.getComment_text());
+                redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+                return "redirect:/comment";
     }
 
 
@@ -107,7 +106,6 @@ public class CommentController {
     public ModelAndView findForEditComment(@PathVariable(required = true, name = "comment_id") Long comment_id) {
         ModelAndView modelAndView = new ModelAndView();
         Optional<Comments> comments= commentDao.find(comment_id);
-        System.out.println(comments);
         modelAndView.addObject("newComment", comments.get());
         modelAndView.addObject("commentList", comments1);
         modelAndView.setViewName("user/userDashComment");
@@ -141,6 +139,8 @@ public class CommentController {
     }
 
 
+
+
     //for saving childComment
     @RequestMapping(value = { "/comment/saveChildComment" }, method = RequestMethod.POST)
     public String saveChildComment(ChildComments childComments,RedirectAttributes redirectAttributes) {
@@ -149,7 +149,7 @@ public class CommentController {
             String name = ((User)principal).getFirstName();
             childComments.setUser_name(name);
             childCommentDao.save(childComments);
-            redirectAttributes.addFlashAttribute("message", "You Comment is= "+comments.getComment_text());
+            redirectAttributes.addFlashAttribute("message", "Your Comment is= "+comments.getComment_text());
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");
             return "redirect:/comment";
         }
