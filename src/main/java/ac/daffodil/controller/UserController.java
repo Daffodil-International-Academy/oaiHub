@@ -6,6 +6,7 @@ import ac.daffodil.model.Comments;
 import ac.daffodil.model.Role;
 import ac.daffodil.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,8 @@ import java.util.Set;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     UserDao userDao;
@@ -53,6 +56,7 @@ public class UserController {
         Set<Role> roles= new HashSet<Role>();
         roles.add(role.get());
         user.setRoles(roles);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.save(user);
         modelAndView.addObject("message", " Data Has Been Saved...");
         return "redirect:/user/userPage";
