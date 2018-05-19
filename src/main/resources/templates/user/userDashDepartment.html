@@ -50,27 +50,21 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">File Id</th>
-                    <th scope="col">Exam Name</th>
-                    <th scope="col">File Type</th>
-                    <th scope="col">File Name</th>
-                    <th scope="col">File</th>
-                    <th scope="col">Subject Name</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Comment</th>
+                    <th scope="col">Department  Id</th>
+                    <th scope="col">University Id</th>
+                    <th scope="col">Department Name</th>
+                    <th scope="col">Course Duration</th>
+                    <th scope="col">Amount</th>
 
                 </tr>
                 </thead>
                 <tbody id="myTable">
-                <tr th:each="file : ${files}">
-                    <td th:text="${file.file_id}" class="table-light">1</td>
-                    <td th:each="exam : ${exams}" th:if="${exam.exam_id == file.exam_id}" th:text="${exam.exam_name}">2</td>
-                    <td th:text="${file.file_type}">3</td>
-                    <td th:text="${file.file_name}">4</td>
-                    <td><a th:href="@{/user/files/__${file.file_name}__}"class="btn btn-info btn-sm" role="button">Download</a></td>
-                    <td th:text="${file.subject_name}">5</td>
-                    <td th:text="${file.year}">6</td>
-                    <td><a th:href="@{/comment/findForFile/__${file.file_id}__}"class="btn btn-info btn-sm" role="button">Review</a></td>
+                <tr th:each="depart : ${departmentList}">
+                    <td th:text="${depart.departmentId}" class="table-light">1</td>
+                    <td th:each="uni : ${universities}" th:if="${uni.universityId == depart.universityId}" th:text="${uni.universityName}">2</td>
+                    <td th:text="${depart.departmentName}">3</td>
+                    <td th:text="${depart.courseDuration}">4</td>
+                    <td th:text="${depart.amount}">5</td>
 
                 </tr>
                 </tbody>

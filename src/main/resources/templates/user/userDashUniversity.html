@@ -50,27 +50,21 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">File Id</th>
-                    <th scope="col">Exam Name</th>
-                    <th scope="col">File Type</th>
-                    <th scope="col">File Name</th>
-                    <th scope="col">File</th>
-                    <th scope="col">Subject Name</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Comment</th>
+                    <th scope="col">University Id</th>
+                    <th scope="col">University Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Action</th>
 
                 </tr>
                 </thead>
                 <tbody id="myTable">
-                <tr th:each="file : ${files}">
-                    <td th:text="${file.file_id}" class="table-light">1</td>
-                    <td th:each="exam : ${exams}" th:if="${exam.exam_id == file.exam_id}" th:text="${exam.exam_name}">2</td>
-                    <td th:text="${file.file_type}">3</td>
-                    <td th:text="${file.file_name}">4</td>
-                    <td><a th:href="@{/user/files/__${file.file_name}__}"class="btn btn-info btn-sm" role="button">Download</a></td>
-                    <td th:text="${file.subject_name}">5</td>
-                    <td th:text="${file.year}">6</td>
-                    <td><a th:href="@{/comment/findForFile/__${file.file_id}__}"class="btn btn-info btn-sm" role="button">Review</a></td>
+                <tr th:each="university : ${universities}">
+                    <td th:text="${university.universityId}" class="table-light">1</td>
+                    <td th:text="${university.universityName}">2</td>
+                    <td th:text="${university.status}">3</td>
+                    <td th:text="${university.location}">4</td>
+                    <td><a th:href="@{/user/findForDepartment/__${university.universityId}__}" class="btn btn-info btn-sm" role="button">View Details</a></td>
 
                 </tr>
                 </tbody>

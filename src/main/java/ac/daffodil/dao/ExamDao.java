@@ -19,8 +19,6 @@ public class ExamDao implements GenericInterface<Exam> {
     @Autowired
     private ExamRepository examRepository;
 
-
-
     @Override
     public Exam save(Exam exam) {
         examRepository.save(exam);
