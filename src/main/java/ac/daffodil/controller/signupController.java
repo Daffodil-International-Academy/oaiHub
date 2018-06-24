@@ -35,7 +35,7 @@ public class signupController {
     RoleDao roleDao;
 
 
-    @RequestMapping(value = { "/loginPage" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
     public ModelAndView loginPage(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("fragments/login");
@@ -46,7 +46,7 @@ public class signupController {
     public String loginFailure(RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("message", "Invalid Username or Password...");
         redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
-        return "redirect:/loginPage";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = { "/signup" }, method = RequestMethod.GET)

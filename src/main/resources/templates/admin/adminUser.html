@@ -65,7 +65,7 @@
             <div class="form-group">
                 <label for="roleId">Role: </label>
                 <select class="form-control" id="selectRole" onchange="myFunction()">
-                    <option disabled="disabled" selected="selected" > -- select the Rols: --</option>
+                    <option disabled="disabled" selected="selected" > -- select the Roles: --</option>
                     <option th:each="role : ${roles}"
                             th:value="${role.id}"
                             th:text="${role.roleName} + ' (' +${role.id} + ') '"></option>
