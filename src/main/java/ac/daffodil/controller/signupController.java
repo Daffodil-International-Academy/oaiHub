@@ -35,16 +35,19 @@ public class signupController {
     RoleDao roleDao;
 
 
-    @GetMapping("/login")
-
-    public ModelAndView login(RedirectAttributes redirectAttributes){
-        redirectAttributes.addFlashAttribute("message", "Invalid Username or Password...");
-        redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
-        ModelAndView mv=new ModelAndView("fragments/layout");
-        return mv;
+    @RequestMapping(value = { "/loginPage" }, method = RequestMethod.GET)
+    public ModelAndView loginPage(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("fragments/login");
+        return modelAndView;
     }
 
-
+    @GetMapping("/loginFailure")
+    public String loginFailure(RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("message", "Invalid Username or Password...");
+        redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+        return "redirect:/loginPage";
+    }
 
     @RequestMapping(value = { "/signup" }, method = RequestMethod.GET)
     public ModelAndView signup(HttpServletRequest request) {
@@ -73,11 +76,11 @@ public class signupController {
             }
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userDao.save(user);
-            redirectAttributes.addFlashAttribute("message", "User Saved SuccessFully...");
+            redirectAttributes.addFlashAttribute("message", "User Saved SuccessFully... ");
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");
             return "redirect:/signup";
         }catch (Exception e){
-            redirectAttributes.addFlashAttribute("message", "Please Cheack and input Correct Data.");
+            redirectAttributes.addFlashAttribute("message", "Error... Please Cheack and input Correct Data.");
             redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
             return "redirect:/signup";
 

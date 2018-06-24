@@ -59,8 +59,8 @@
                     <td th:text="${exam.exam_id}">1</td>
                     <td th:text="${exam.exam_type}">2</td>
                     <td th:text="${exam.exam_name}">3</td>
-                    <td><a th:href="@{/exam/find/__${exam.exam_id}__}">Edit</a></td>
-                    <td><a th:href="@{/exam/delete/__${exam.exam_id}__}">Delete</a></td>
+                    <td><a th:href="@{/exam/find/__${exam.exam_id}__}" class="btn btn-info btn-sm" role="button">Edit</a></td>
+                    <td><a th:href="@{/exam/delete/__${exam.exam_id}__}" class="btn btn-danger btn-sm" role="button">Delete</a></td>
                 </tr>
                 </tbody>
             </table>
