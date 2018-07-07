@@ -35,14 +35,38 @@
                 <div class="form-group">
                     <label for="status">Status: </label>
                     <select class="form-control" th:value="${newUniversity.status}" name="status" id="status">
-                        <option disabled="disabled" selected="selected" > -- select Status --</option>
-                        <option>Public</option>
-                        <option>Private</option>
+                        <option disabled="disabled" th:selected="selected" > -- select Status --</option>
+                        <option th:selected="${newUniversity.status == 'Public'}">Public</option>
+                        <option th:selected="${newUniversity.status == 'Private'}">Private</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="location">Location: </label>
                     <input type="text" class="form-control" id="location" name="location" placeholder="Location" th:field="${newUniversity.location}">
+                </div>
+                <div class="form-group">
+                    <label for="totalStudent">Total Student: </label>
+                    <input type="text" class="form-control" id="totalStudent" name="totalStudent" placeholder="Total Student" th:field="${newUniversity.totalStudent}">
+                </div>
+                <div class="form-group">
+                    <label for="about">About: </label>
+                    <input type="text" class="form-control" id="about" name="about" placeholder="About" th:field="${newUniversity.about}">
+                </div>
+                <div class="form-group">
+                    <label for="academicStaff">Academic Staff: </label>
+                    <input type="text" class="form-control" id="academicStaff" name="academicStaff" placeholder="Academic Staff" th:field="${newUniversity.academicStaff}">
+                </div>
+                <div class="form-group">
+                    <label for="administrativeStaff">Administrative Staff: </label>
+                    <input type="text" class="form-control" id="administrativeStaff" name="administrativeStaff" placeholder="Administrative Staff" th:field="${newUniversity.administrativeStaff}">
+                </div>
+                <div class="form-group">
+                    <label for="undergraduates">Undergraduates: </label>
+                    <input type="text" class="form-control" id="undergraduates" name="undergraduates" placeholder="Undergraduates" th:field="${newUniversity.undergraduates}">
+                </div>
+                <div class="form-group">
+                    <label for="postgraduates">Postgraduates: </label>
+                    <input type="text" class="form-control" id="postgraduates" name="postgraduates" placeholder="Postgraduates" th:field="${newUniversity.postgraduates}">
                 </div>
                 <button type="submit" class="btn btn-success btn-sm">Save</button>
                 <a th:href="@{/university/universityPage}"class="btn btn-info btn-sm" role="button">New</a>
@@ -56,6 +80,12 @@
                     <th scope="col">University Name</th>
                     <th scope="col">Status</th>
                     <th scope="col">Location</th>
+                    <th scope="col">Total Student</th>
+                    <th scope="col">About</th>
+                    <th scope="col">Academic Staff</th>
+                    <th scope="col">Administrative Staff</th>
+                    <th scope="col">Undergraduates</th>
+                    <th scope="col">Postgraduates</th>
                     <th scope="colgroup" colspan="2">Action</th>
                 </tr>
                 </thead>
@@ -65,6 +95,12 @@
                     <td th:text="${university.universityName}">2</td>
                     <td th:text="${university.status}">3</td>
                     <td th:text="${university.location}">4</td>
+                    <td th:text="${university.totalStudent}">5</td>
+                    <td th:text="${university.about}">6</td>
+                    <td th:text="${university.academicStaff}">7</td>
+                    <td th:text="${university.administrativeStaff}">8</td>
+                    <td th:text="${university.undergraduates}">9</td>
+                    <td th:text="${university.postgraduates}">10</td>
                     <td><a th:href="@{/university/findForEditUniversity/__${university.universityId}__}"class="btn btn-info btn-sm" role="button">Edit</a></td>
                     <td><a th:href="@{/university/deleteUniversity/__${university.universityId}__}" class="btn btn-danger btn-sm" role="button">Delete</a></td>
                 </tr>

@@ -42,7 +42,8 @@
                         <option disabled="disabled" selected="selected" > -- select the University ID: --</option>
                         <option th:each="university : ${universities}"
                                 th:value="${university.universityId}"
-                                th:text="${university.universityName}+ ' (' +${university.universityId} + ') '"></option>
+                                th:text="${university.universityName}+ ' (' +${university.universityId} + ') '"
+                                th:selected="${#strings.toString(university.universityId) == #strings.toString(newDepartment.universityId)}"></option>
                     </select>
                     <input type="text" hidden="true" readonly="true" class="form-control" id="universityId" name="universityId" placeholder="Your University Id" th:field="${newDepartment.universityId}">
                 </div>

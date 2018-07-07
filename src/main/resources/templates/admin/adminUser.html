@@ -68,7 +68,8 @@
                     <option disabled="disabled" selected="selected" > -- select the Roles: --</option>
                     <option th:each="role : ${roles}"
                             th:value="${role.id}"
-                            th:text="${role.roleName} + ' (' +${role.id} + ') '"></option>
+                            th:text="${role.roleName} + ' (' +${role.id} + ') '"
+                            th:selected="${#strings.toString(role.id) == #strings.toString(newUser.roleId)}"></option>
                 </select>
                 <input type="text" hidden="true" readonly="true" class="form-control" id="roleId" name="roleId" placeholder="Your roleId" th:field="${newUser.roleId}">
             </div>

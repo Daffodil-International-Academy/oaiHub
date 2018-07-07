@@ -54,6 +54,7 @@
                     <th scope="col">University Name</th>
                     <th scope="col">Status</th>
                     <th scope="col">Location</th>
+                    <th scope="col">Total Student</th>
                     <th scope="col">Action</th>
 
                 </tr>
@@ -64,7 +65,9 @@
                     <td th:text="${university.universityName}">2</td>
                     <td th:text="${university.status}">3</td>
                     <td th:text="${university.location}">4</td>
-                    <td><a th:href="@{/user/findForDepartment/__${university.universityId}__}" class="btn btn-info btn-sm" role="button">View Details</a></td>
+                    <td th:text="${university.totalStudent}">5</td>
+                    <td><a th:href="@{/user/findForUniversity/__${university.universityId}__}" class="btn btn-info btn-sm" role="button">View Details</a></td>
+                    <!--<td><a th:href="@{/user/findForDepartment/__${university.universityId}__}" class="btn btn-info btn-sm" role="button">View Details</a></td>-->
 
                 </tr>
                 </tbody>
