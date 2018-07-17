@@ -50,7 +50,6 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">Department  Id</th>
                     <th scope="col">University Id</th>
                     <th scope="col">Department Name</th>
                     <th scope="col">Course Duration</th>
@@ -60,12 +59,10 @@
                 </thead>
                 <tbody id="myTable">
                 <tr th:each="depart : ${departmentList}">
-                    <td th:text="${depart.departmentId}" class="table-light">1</td>
                     <td th:each="uni : ${universities}" th:if="${uni.universityId == depart.universityId}" th:text="${uni.universityName}">2</td>
                     <td th:text="${depart.departmentName}">3</td>
                     <td th:text="${depart.courseDuration}">4</td>
                     <td th:text="${depart.amount}">5</td>
-
                 </tr>
                 </tbody>
             </table>

@@ -22,7 +22,7 @@
 <div class="container">
     <br/>
     <div class="row">
-        <div class="col col-md-6 mb-4">
+        <div class="col col-md-12 mb-4">
             <form th:action="@{/university/saveUniversity}" method="post">
                 <div class="form-group">
                     <label for="universityId">University Id: </label>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group">
                     <label for="about">About: </label>
-                    <input type="text" class="form-control" id="about" name="about" placeholder="About" th:field="${newUniversity.about}">
+                    <textarea class="form-control" rows="5" id="about" name="about" th:field="${newUniversity.about}">About</textarea>
                 </div>
                 <div class="form-group">
                     <label for="academicStaff">Academic Staff: </label>
@@ -72,7 +72,7 @@
                 <a th:href="@{/university/universityPage}"class="btn btn-info btn-sm" role="button">New</a>
             </form>
         </div>
-        <div class="col col-md-6">
+        <div class="col col-md-12">
             <table class="table">
                 <thead class="thead-light">
                 <tr>
@@ -81,7 +81,6 @@
                     <th scope="col">Status</th>
                     <th scope="col">Location</th>
                     <th scope="col">Total Student</th>
-                    <th scope="col">About</th>
                     <th scope="col">Academic Staff</th>
                     <th scope="col">Administrative Staff</th>
                     <th scope="col">Undergraduates</th>
@@ -96,7 +95,6 @@
                     <td th:text="${university.status}">3</td>
                     <td th:text="${university.location}">4</td>
                     <td th:text="${university.totalStudent}">5</td>
-                    <td th:text="${university.about}">6</td>
                     <td th:text="${university.academicStaff}">7</td>
                     <td th:text="${university.administrativeStaff}">8</td>
                     <td th:text="${university.undergraduates}">9</td>

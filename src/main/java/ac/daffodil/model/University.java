@@ -25,7 +25,7 @@ public class University {
     @Column(name="total_student")
     private Long totalStudent;
 
-    @Column(name="about")
+    @Column(name="about", columnDefinition = "TEXT")
     private String about;
 
     @Column(name="academic_staff")

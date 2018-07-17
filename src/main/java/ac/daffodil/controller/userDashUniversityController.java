@@ -53,12 +53,35 @@ public class userDashUniversityController {
         return modelAndView;
     }
 
+    Optional<University> university= Optional.of(new University());
+
     @RequestMapping(value={"/findForUniversity/{id}"}, method = RequestMethod.GET)
     public ModelAndView findForUniversity(@PathVariable(required = true, name = "id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
-        Optional<University> university= universityDao.find(id);
+        university= universityDao.find(id);
         modelAndView.addObject("university", university.get());
+
+        List<University> universities = new LinkedList<>();
+        for (University uni : universityDao.getAll()) {
+            if (uni.getUniversityId() != university.get().getUniversityId()){
+                universities.add(uni);
+            }
+        }
+        modelAndView.addObject("universities", universities);
+        modelAndView.addObject("compareUni", new University());
         modelAndView.setViewName("user/userDashUniversityDetails");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/compareUniversity", method = RequestMethod.POST)
+    public ModelAndView compareUniversity(University compareUni) {
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<University> university1= universityDao.find(university.get().getUniversityId());
+        modelAndView.addObject("university1", university1.get());
+        Optional<University> university2= universityDao.find(compareUni.getUniversityId());
+        modelAndView.addObject("university2", university2.get());
+
+        modelAndView.setViewName("user/userDashUniversityCompare");
         return modelAndView;
     }
 }
