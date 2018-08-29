@@ -20,7 +20,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public static void main(String[] args) {
 
         BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
-        System.out.println(bCryptPasswordEncoder.encode("12345678"));
+        System.out.println(bCryptPasswordEncoder.encode("1234"));
     }
 
 }
