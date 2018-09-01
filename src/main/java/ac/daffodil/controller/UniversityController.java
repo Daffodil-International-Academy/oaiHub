@@ -8,9 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -34,8 +37,13 @@ public class UniversityController {
     }
 
     @RequestMapping(value="/saveUniversity", method = RequestMethod.POST)
-    public String saveUniversity(University newUniversity) {
+    public String saveUniversity(@RequestParam("file") MultipartFile file, University newUniversity) {
         ModelAndView modelAndView = new ModelAndView();
+        try {
+            newUniversity.setImage(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         universityDao.save(newUniversity);
         modelAndView.addObject("message", " Data Has Been Saved...");
         return "redirect:/university/universityPage";

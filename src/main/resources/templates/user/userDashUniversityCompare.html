@@ -44,19 +44,34 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <th>Status</th>
-                    <td th:text="${university1.status}"></td>
-                    <td th:text="${university2.status}"></td>
-                </tr>
-                <tr>
                     <th>Location</th>
                     <td th:text="${university1.location}"></td>
                     <td th:text="${university2.location}"></td>
                 </tr>
                 <tr>
+                    <th>Average Fees</th>
+                    <td th:text="${university1.averageFees}"></td>
+                    <td th:text="${university2.averageFees}"></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td th:text="${university1.status}"></td>
+                    <td th:text="${university2.status}"></td>
+                </tr>
+                <tr>
                     <th>Total Student</th>
                     <td th:text="${university1.totalStudent}"></td>
                     <td th:text="${university2.totalStudent}"></td>
+                </tr>
+                <tr>
+                    <th>International Students</th>
+                    <td th:text="${university1.internationalStudents}"></td>
+                    <td th:text="${university2.internationalStudents}"></td>
+                </tr>
+                <tr>
+                    <th>Employability</th>
+                    <td th:text="${university1.employability}"></td>
+                    <td th:text="${university2.employability}"></td>
                 </tr>
                 <tr>
                     <th>Academic Staff</th>
@@ -77,6 +92,16 @@
                     <th>Postgraduates</th>
                     <td th:text="${university1.postgraduates}"></td>
                     <td th:text="${university2.postgraduates}"></td>
+                </tr>
+                <tr>
+                    <th>Research</th>
+                    <td th:text="${university1.research}"></td>
+                    <td th:text="${university2.research}"></td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td th:text="${university1.age}"></td>
+                    <td th:text="${university2.age}"></td>
                 </tr>
                 </tbody>
             </table>

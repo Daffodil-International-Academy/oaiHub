@@ -19,7 +19,7 @@
         $(document).ready(function(){
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
+                $(".card").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -46,32 +46,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-12">
-            <table class="table">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col">University Id</th>
-                    <th scope="col">University Name</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Total Student</th>
-                    <th scope="col">Action</th>
-
-                </tr>
-                </thead>
-                <tbody id="myTable">
-                <tr th:each="university : ${universities}">
-                    <td th:text="${university.universityId}" class="table-light">1</td>
-                    <td th:text="${university.universityName}">2</td>
-                    <td th:text="${university.status}">3</td>
-                    <td th:text="${university.location}">4</td>
-                    <td th:text="${university.totalStudent}">5</td>
-                    <td><a th:href="@{/user/findForUniversity/__${university.universityId}__}" class="btn btn-info btn-sm" role="button">View Details</a></td>
-                    <!--<td><a th:href="@{/user/findForDepartment/__${university.universityId}__}" class="btn btn-info btn-sm" role="button">View Details</a></td>-->
-
-                </tr>
-                </tbody>
-            </table>
+        <div th:each="university : ${universities}">
+            <div class="col-12 col-md-6 col-sm-4 col-xl-4">
+                <div class="card" style="width: 18rem; margin-bottom: 20px;">
+                    <div class="card-body">
+                        <img class="card-img-top" th:src="@{/user/universityImageDisplay/__${university.universityId}__}" style="height: 10rem; width: 15rem" alt="University Image">
+                        <h5 class="card-title mt-4" th:text="${university.universityName}"></h5>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${university.location}"></h6>
+                        <p class="card-text" th:text="${university.shortNote}"></p>
+                        <a th:href="@{/user/findForUniversity/__${university.universityId}__}" class="btn btn-info btn-sm">View Details</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

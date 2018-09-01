@@ -16,14 +16,30 @@ public class University {
     @Column(name="university_name")
     private String universityName;
 
+    @Lob
+    @Column(name="image", nullable=false, columnDefinition="mediumblob")
+    private byte[] image;
+
     @Column(name="status")
     private String status;
 
     @Column(name="location")
     private String location;
 
+    @Column(name="average_fees")
+    private String averageFees;
+
     @Column(name="total_student")
     private Long totalStudent;
+
+    @Column(name="international_students")
+    private Long internationalStudents;
+
+    @Column(name="employability")
+    private String employability;
+
+    @Column(name="short_note", columnDefinition = "TEXT")
+    private String shortNote;
 
     @Column(name="about", columnDefinition = "TEXT")
     private String about;
@@ -39,6 +55,12 @@ public class University {
 
     @Column(name="postgraduates")
     private Long postgraduates;
+
+    @Column(name="research")
+    private String research;
+
+    @Column(name="age")
+    private String age;
 
     public University() {
     }
@@ -135,6 +157,62 @@ public class University {
         this.postgraduates = postgraduates;
     }
 
+    public String getAverageFees() {
+        return averageFees;
+    }
+
+    public void setAverageFees(String averageFees) {
+        this.averageFees = averageFees;
+    }
+
+    public String getEmployability() {
+        return employability;
+    }
+
+    public void setEmployability(String employability) {
+        this.employability = employability;
+    }
+
+    public Long getInternationalStudents() {
+        return internationalStudents;
+    }
+
+    public void setInternationalStudents(Long internationalStudents) {
+        this.internationalStudents = internationalStudents;
+    }
+
+    public String getShortNote() {
+        return shortNote;
+    }
+
+    public void setShortNote(String shortNote) {
+        this.shortNote = shortNote;
+    }
+
+    public String getResearch() {
+        return research;
+    }
+
+    public void setResearch(String research) {
+        this.research = research;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "University{" +
@@ -142,12 +220,18 @@ public class University {
                 ", universityName='" + universityName + '\'' +
                 ", status='" + status + '\'' +
                 ", location='" + location + '\'' +
+                ", averageFees='" + averageFees + '\'' +
+                ", employability='" + employability + '\'' +
                 ", totalStudent=" + totalStudent +
+                ", internationalStudents=" + internationalStudents +
+                ", shortNote='" + shortNote + '\'' +
                 ", about='" + about + '\'' +
                 ", academicStaff=" + academicStaff +
                 ", administrativeStaff=" + administrativeStaff +
                 ", undergraduates=" + undergraduates +
                 ", postgraduates=" + postgraduates +
+                ", research='" + research + '\'' +
+                ", age='" + age + '\'' +
                 '}';
     }
 }
